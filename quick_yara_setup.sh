@@ -20,7 +20,7 @@ install_yara() {
 
 # Set up project structure
 setup_project_structure() {
-    PROJECT_DIR="yara_project"
+    PROJECT_DIR="quick_yara"
     RULES_DIR="$PROJECT_DIR/rules"
     RULES_ZIP="yara-forge-rules-full.zip"
     RULES_URL="https://github.com/YARAHQ/yara-forge/releases/download/20241103/$RULES_ZIP"
