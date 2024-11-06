@@ -28,7 +28,7 @@ setup_rules_directory() {
     mkdir -p "$RULES_DIR"
 }
 
-# Download and unpack YARA Forge rules
+# Download, unpack, and move YARA Forge rule file
 download_and_unpack_rules() {
     echo "Downloading YARA Forge rules..."
     wget -O "$RULES_ZIP" "$RULES_URL"
@@ -36,12 +36,19 @@ download_and_unpack_rules() {
     echo "Unpacking the YARA Forge rules..."
     unzip "$RULES_ZIP" -d "$RULES_DIR"
 
+    # Move the specific rule file to the rules directory
+    echo "Moving yara-rules-full.yar to the rules directory..."
+    mv "$RULES_DIR/packages/full/yara-rules-full.yar" "$RULES_DIR/"
+
+    # Clean up unnecessary directories and the ZIP file
     echo "Cleaning up..."
+    rm -rf "$RULES_DIR/packages"
     rm "$RULES_ZIP"
-    echo "YARA Forge rules downloaded and unpacked into the rules directory."
+    echo "YARA Forge rules downloaded, unpacked, and organized in the rules directory."
 }
 
 # Main execution
 install_yara
 setup_rules_directory
 download_and_unpack_rules
+
